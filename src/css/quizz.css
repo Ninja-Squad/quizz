@@ -1,0 +1,19 @@
+.container {
+    margin-top: 60px;
+}
+.question {
+    font-size: 60px;
+    color: #0064cd;
+}
+.correct {
+    font-size: 60px;
+    color: #46a546;
+}
+.incorrect {
+    font-size: 60px;
+    color: #9d261d;
+}
+th.tick, td.tick {
+    text-align: center;
+    width: 10%;
+}

@@ -2,15 +2,167 @@
 <html ng-app="quizz">
     <head>
         <title>Quizz</title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/quizz.css" rel="stylesheet">
     </head>
-    <body ng-controller="MainCtrl">
-        <h1>Hello {{ message }}</h1>
-        <div ng-view>
-            
+    <body ng-controller="MainCtrl" ng-init="initWithWindowVariable('quizz')" ng-cloak>
+        <div class="container">
+
+            <div id="intro" ng-show="!started" class="hero-unit">
+                <h1>{{ quizz.title }}</h1>
+                <p>{{ quizz.description }}</p>
+                <button id="start_button" class="btn btn-primary btn-large" ng-click="start()">Start</button>
+            </div>
+
+            <div id="question" ng-show="started && !finished">
+                <h1>Question {{ questionIndex() + 1 }} / {{ quizz.questions.length }}</h1>
+
+                <div class="progress progress-striped">
+                    <div class="bar" style="width: {{ (questionIndex() + 1) * 100 / quizz.questions.length }}%;"></div>
+                </div>
+
+                <div class="row">
+                    <div class="span1">
+                        <i class="icon-question-sign question"></i>
+                    </div>
+                    <div class="span11">
+                        <div class="well">{{ currentQuestion.text }}</div>
+                        <form class="well">
+                            <div ng-repeat="answer in currentQuestion.answers">
+                                <label class="radio" ng-show="currentQuestion.type == 'radio'">
+                                    <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer" />
+                                    {{ answer.text }}
+                                </label>
+                                <label class="checkbox" ng-show="currentQuestion.type == 'checkbox'">
+                                    <input type="checkbox" ng-model="answer.checked"/>
+                                    {{ answer.text }}
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <ul class="pager">
+                    <li class="previous" ng-show="hasPrevious()" ng-click="previous()">
+                        <a id="previous_button" href="">&larr; Previous</a>
+                    </li>
+                    <li class="next" ng-show="hasNext()" ng-click="next()">
+                        <a id="next_button" href="">Next &rarr;</a>
+                    </li>
+                    <li class="next" ng-show="!hasNext()" ng-click="finish()">
+                        <a id="finish_button" href="">Finish &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="result" ng-show="finished">
+                <h1>Your score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
+
+                <div ng-repeat="question in quizz.questions">
+                    <hr/>
+                    <div class="row">
+                        <div class="span1" style="text-align: center;">
+                            <i class="icon-ok-sign correct" ng-show="isAnswerCorrect(question)"></i>
+                            <i class="icon-remove-sign incorrect" ng-show="!isAnswerCorrect(question)"></i>
+                        </div>
+                        <div class="span11">
+                            <div class="well">{{ question.text }}</div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="tick">Yours</th>
+                                        <th class="tick">Correct</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="answer in question.answers">
+                                        <td class="tick">
+                                            <i class="icon-ok" ng-show="isAnswerSelected(question, answer) && answer.correct"></i>
+                                            <i class="icon-remove" ng-show="isAnswerSelected(question, answer) && !answer.correct"></i>
+                                        </td>
+                                        <td class="tick">
+                                            <i class="icon-ok" ng-show="answer.correct"></i>
+                                        </td>
+                                        <td>{{ answer.text }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <script src="/bower_components/angular/angular.js"></script>
-        <script src="/js/app.js"></script>
-        <script src="/js/controllers/MainCtrl.js"></script>
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainCtrl.js"></script>
+        <script>
+            var quizz = {
+                title: 'Example Quizz',
+                description: 'This quizz will test your knowledge about AngularJS',
+                questions: [
+                    {
+                        type: 'radio',
+                        text: 'AngularJS is a...',
+                        answers: [
+                            {
+                                text: 'Java framework',
+                                correct: false
+                            },
+                            {
+                                text: 'JavaScript Framework',
+                                correct: true
+                            },
+                            {
+                                text: 'Ruby Framework',
+                                correct: false
+                            }
+                        ]
+                    },
+                    {
+                        type: 'radio',
+                        text: 'To loop over elements, we use the directive...',
+                        answers: [
+                            {
+                                text: 'ngRepeat',
+                                correct: true
+                            },
+                            {
+                                text: 'ngLoop',
+                                correct: false
+                            },
+                            {
+                                text: 'ngForEach',
+                                correct: false
+                            }
+                        ]
+                    },
+                    {
+                        type: 'checkbox',
+                        text: 'Which tools can help develop AngularJS applications?',
+                        answers: [
+                            {
+                                text: 'Excel',
+                                correct: false
+                            },
+                            {
+                                text: 'Grunt',
+                                correct: true
+                            },
+                            {
+                                text: 'Karma',
+                                correct: true
+                            },
+                            {
+                                text: 'A hammer',
+                                correct: false
+                            }
+                        ]
+                    }
+                ]
+            };
+        </script>
     </body>
 </html>
