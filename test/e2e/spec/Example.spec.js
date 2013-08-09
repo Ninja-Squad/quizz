@@ -107,22 +107,22 @@ describe('Example page', function() {
         });
 
         it("should display answers in first column", function() {
-            expect(element('.result-question:eq(0) tbody tr:eq(0) td:eq(0) i.icon-remove:visible').count()).toBe(1);
-            expect(element('.result-question:eq(2) tbody tr:eq(0) td:eq(0) i.icon-remove:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(0) tbody tr:eq(0) td:eq(0) i.icon-remove:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(2) tbody tr:eq(0) td:eq(0) i.icon-remove:visible').count()).toBe(1);
         });
 
         it("should display correct answers in second column", function() {
-            expect(element('.result-question:eq(0) tbody tr:eq(1) td:eq(1) i.icon-ok:visible').count()).toBe(1);
-            expect(element('.result-question:eq(2) tbody tr:eq(1) td:eq(1) i.icon-ok:visible').count()).toBe(1);
-            expect(element('.result-question:eq(2) tbody tr:eq(2) td:eq(1) i.icon-ok:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(0) tbody tr:eq(1) td:eq(1) i.icon-ok:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(2) tbody tr:eq(1) td:eq(1) i.icon-ok:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(2) tbody tr:eq(2) td:eq(1) i.icon-ok:visible').count()).toBe(1);
         });
 
         it("should display free typed answer", function() {
-            expect(element('.result-question:eq(1) .free-yours:visible').text()).toContain("ngRepeat");
-            expect(element('.result-question:eq(1) .free-yours i.icon-ok:visible').count()).toBe(1);
-            expect(element('.result-question:eq(1) .free-yours i.icon-remove:visible').count()).toBe(0);
+            expect(element('.quizz-result-question:eq(1) .quizz-free-yours:visible').text()).toContain("ngRepeat");
+            expect(element('.quizz-result-question:eq(1) .quizz-free-yours i.icon-ok:visible').count()).toBe(1);
+            expect(element('.quizz-result-question:eq(1) .quizz-free-yours i.icon-remove:visible').count()).toBe(0);
 
-            expect(element('.result-question:eq(1) .free-correct:visible').text()).toContain("ngRepeat ng-repeat");
+            expect(element('.quizz-result-question:eq(1) .quizz-free-correct:visible').text()).toContain("ngRepeat ng-repeat");
         });
     });
 
