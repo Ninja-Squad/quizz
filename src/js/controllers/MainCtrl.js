@@ -2,8 +2,14 @@ angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window',
     $scope.started = false;
     $scope.finished = false;
 
+    $window.onbeforeunload = function() {
+        if ($scope.started && !$scope.finished) {
+            return "Beware: leaving the page will make you lose all your answers!";
+        }
+    };
+
     $scope.initWithWindowVariable = function(variable) {
-        $scope.quizz = $window[variable];
+        $scope.init($window[variable]);
     };
 
     $scope.init = function(quizz) {
@@ -15,24 +21,30 @@ angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window',
         $scope.currentQuestion = $scope.quizz.questions[0];
     };
 
-    $scope.questionIndex = function() {
+    function questionIndex() {
         return $scope.quizz.questions.indexOf($scope.currentQuestion);
-    };
+    }
+
+    function quizzLength() {
+        return $scope.quizz.questions.length;
+    }
+
+    $scope.questionIndex = questionIndex;
 
     $scope.hasNext = function() {
-        return $scope.quizz.questions.indexOf($scope.currentQuestion) < $scope.quizz.questions.length - 1;
+        return questionIndex() < quizzLength() - 1;
     };
 
     $scope.hasPrevious = function() {
-        return $scope.quizz.questions.indexOf($scope.currentQuestion) > 0;
+        return questionIndex() > 0;
     };
 
     $scope.next = function() {
-        $scope.currentQuestion = $scope.quizz.questions[$scope.quizz.questions.indexOf($scope.currentQuestion) + 1];
+        $scope.currentQuestion = $scope.quizz.questions[questionIndex() + 1];
     };
 
     $scope.previous = function() {
-        $scope.currentQuestion = $scope.quizz.questions[$scope.quizz.questions.indexOf($scope.currentQuestion) - 1];
+        $scope.currentQuestion = $scope.quizz.questions[questionIndex() - 1];
     };
 
     $scope.finish = function() {
@@ -40,20 +52,14 @@ angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window',
         $scope.finished = true;
     };
 
-    $scope.isAnswerCorrect = function(question) {
+    function isAnswerCorrect(question) {
         if (question.type == 'radio') {
             return question.selectedAnswer && question.selectedAnswer.correct;
         }
         else if (question.type == 'checkbox') {
-            var ok = true;
-            for (var i = 0; i < question.answers.length && ok; i++) {
-                var answer = question.answers[i];
-                if (answer.correct && !answer.checked ||
-                    !answer.correct && answer.checked) {
-                    ok = false;
-                }
-            }
-            return ok;
+            return question.answers.every(function(answer) {
+                return ((answer.correct && answer.checked) || (!answer.correct && !answer.checked));
+            });
         }
         else if (question.type == 'free') {
             return question.typedAnswer && question.answers.indexOf(question.typedAnswer.trim()) >= 0;
@@ -61,10 +67,12 @@ angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window',
         else {
             return false;
         }
-    };
+    }
+
+    $scope.isAnswerCorrect = isAnswerCorrect;
 
     $scope.getScore = function() {
-        return $scope.quizz.questions.filter($scope.isAnswerCorrect).length;
+        return $scope.quizz.questions.filter(isAnswerCorrect).length;
     };
 
     $scope.isAnswerSelected = function(question, answer) {
@@ -73,12 +81,6 @@ angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window',
         }
         else {
             return answer.checked;
-        }
-    };
-
-    $window.onbeforeunload = function () {
-        if ($scope.started && !$scope.finished) {
-            return "Beware: leaving the page will make you lose all your answers!";
         }
     };
 }]);
