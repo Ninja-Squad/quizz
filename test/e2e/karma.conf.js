@@ -5,12 +5,10 @@ module.exports = function (config) {
         basePath: '../../',
 
         // frameworks to use
-        frameworks: ['jasmine'],
+        frameworks: ['ng-scenario'],
 
         // list of files / patterns to load in the browser
         files: [
-            ANGULAR_SCENARIO,
-            ANGULAR_SCENARIO_ADAPTER,
             'test/e2e/spec/**/*.js'
         ],
 
