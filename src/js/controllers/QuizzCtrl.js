@@ -1,4 +1,4 @@
-angular.module("quizz.controller", []).controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
+angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.started = false;
     $scope.finished = false;
 

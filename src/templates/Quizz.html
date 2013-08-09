@@ -1,10 +1,10 @@
-<div id="intro" ng-show="!started" class="hero-unit">
+<div class="quizz-intro" ng-show="!started" class="hero-unit">
     <h1>{{ quizz.title }}</h1>
     <p>{{ quizz.description }}</p>
-    <button id="start_button" class="btn btn-primary btn-large" ng-click="start()">Start</button>
+    <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
-<div id="question" ng-show="started && !finished">
+<div class="quizz-question" ng-show="started && !finished">
     <div class="row">
         <div class="span2" style="text-align: center;">
             <h1>{{ questionIndex() + 1 }} / {{ quizz.questions.length }}</h1>
@@ -36,20 +36,20 @@
 
             <ul class="pager">
                 <li class="previous" ng-show="hasPrevious()" ng-click="previous()">
-                    <a id="previous_button" href="">&larr; Previous</a>
+                    <a class="quizz-previous-button" href="">&larr; Previous</a>
                 </li>
                 <li class="next" ng-show="hasNext()" ng-click="next()">
-                    <a id="next_button" href="">Next &rarr;</a>
+                    <a class="quizz-next-button" href="">Next &rarr;</a>
                 </li>
                 <li class="next" ng-show="!hasNext()" ng-click="finish()">
-                    <a id="finish_button" href="">Finish &rarr;</a>
+                    <a class="quizz-finish-button" href="">Finish &rarr;</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 
-<div id="result" ng-show="finished">
+<div class="quizz-result" ng-show="finished">
     <h1>Your score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
 
     <div ng-repeat="question in quizz.questions" class="result-question">

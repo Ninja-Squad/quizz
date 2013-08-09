@@ -11,10 +11,8 @@ module.exports = function (config) {
         files: [
             'src/bower_components/angular/angular.js',
             'src/bower_components/angular-mocks/angular-mocks.js',
-            'src/bower_components/angular-markdown-directive/markdown.js',
             'src/bower_components/showdown/compressed/showdown.js',
-            'src/js/app.js',
-            'src/js/**/*.js',
+            'src/js/controllers/*.js',
             'test/unit/spec/**/*.js'
         ],
 

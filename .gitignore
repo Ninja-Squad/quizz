@@ -1,3 +1,5 @@
 node_modules
 /quizz.iml
 /.idea
+/dist
+/tmp
