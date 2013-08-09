@@ -1,4 +1,4 @@
-angular.module("quizz").controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
+angular.module("quizz.controllers").controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.started = false;
     $scope.finished = false;
 
@@ -44,7 +44,7 @@ angular.module("quizz").controller('MainCtrl', ['$scope', '$window', function($s
         if (question.type == 'radio') {
             return question.selectedAnswer && question.selectedAnswer.correct;
         }
-        else {
+        else if (question.type == 'checkbox') {
             var ok = true;
             for (var i = 0; i < question.answers.length && ok; i++) {
                 var answer = question.answers[i];
@@ -54,6 +54,12 @@ angular.module("quizz").controller('MainCtrl', ['$scope', '$window', function($s
                 }
             }
             return ok;
+        }
+        else if (question.type == 'free') {
+            return question.typedAnswer && question.answers.indexOf(question.typedAnswer.trim()) >= 0;
+        }
+        else {
+            return false;
         }
     };
 

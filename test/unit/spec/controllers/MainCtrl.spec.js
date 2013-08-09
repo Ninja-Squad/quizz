@@ -2,7 +2,7 @@ describe('Controller: MainCtrl', function() {
     var $scope;
     var $window;
 
-    beforeEach(module('quizz'));
+    beforeEach(module('quizz.controllers'));
     beforeEach(inject(function($rootScope, $controller) {
         $scope = $rootScope.$new();
         $window = {};
@@ -33,22 +33,9 @@ describe('Controller: MainCtrl', function() {
                     ]
                 },
                 {
-                    type: 'radio',
-                    text: 'To loop over elements, we use the directive...',
-                    answers: [
-                        {
-                            text: 'ngRepeat',
-                            correct: true
-                        },
-                        {
-                            text: 'ngLoop',
-                            correct: false
-                        },
-                        {
-                            text: 'ngForEach',
-                            correct: false
-                        }
-                    ]
+                    type: 'free',
+                    text: 'What is the name of the directive used to *loop* over elements?',
+                    answers: ['ngRepeat', 'ng-repeat']
                 },
                 {
                     type: 'checkbox',
@@ -166,6 +153,21 @@ describe('Controller: MainCtrl', function() {
     it("should tell answer is incorrect when correct checkbox answer is not selected", function() {
         var question = $scope.quizz.questions[2];
         question.answers[1].checked = true;
+        expect($scope.isAnswerCorrect(question)).toBe(false);
+    });
+
+    it("should tell answer is correct when correct free answer is typed", function() {
+        var question = $scope.quizz.questions[1];
+        question.typedAnswer = question.answers[0];
+        expect($scope.isAnswerCorrect(question)).toBe(true);
+
+        question.typedAnswer = '  ' + question.answers[1] + '  ';
+        expect($scope.isAnswerCorrect(question)).toBe(true);
+    });
+
+    it("should tell answer is incorrect when incorrect free answer is typed", function() {
+        var question = $scope.quizz.questions[1];
+        question.typedAnswer = 'hello';
         expect($scope.isAnswerCorrect(question)).toBe(false);
     });
 

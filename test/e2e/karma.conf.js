@@ -1,60 +1,60 @@
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+    config.set({
 
-    // base path, that will be used to resolve files and exclude
-    basePath: '../../',
+        // base path, that will be used to resolve files and exclude
+        basePath: '../../',
 
-    // frameworks to use
-    frameworks: ['jasmine'],
+        // frameworks to use
+        frameworks: ['jasmine'],
 
-    // list of files / patterns to load in the browser
-    files: [
-      ANGULAR_SCENARIO,
-      ANGULAR_SCENARIO_ADAPTER,
-      'test/e2e/spec/**/*.js'
-    ],
+        // list of files / patterns to load in the browser
+        files: [
+            ANGULAR_SCENARIO,
+            ANGULAR_SCENARIO_ADAPTER,
+            'test/e2e/spec/**/*.js'
+        ],
 
-    // list of files to exclude
-    exclude: [
-    ],
+        // list of files to exclude
+        exclude: [
+        ],
 
-    proxies: {
-        '/': 'http://localhost:9002'
-    },
-    urlRoot: '/karma',
-    
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+        proxies: {
+            '/': 'http://localhost:9002'
+        },
+        urlRoot: '/karma',
 
-    // web server port
-    port: 9876,
+        // test results reporter to use
+        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+        reporters: ['progress'],
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+        // web server port
+        port: 9876,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: ['Chrome'],
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: false,
 
-    // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 60000,
+        // Start these browsers, currently available:
+        // - Chrome
+        // - ChromeCanary
+        // - Firefox
+        // - Opera
+        // - Safari (only Mac)
+        // - PhantomJS
+        // - IE (only Windows)
+        browsers: ['Chrome'],
 
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false
-  });
+        // If browser does not capture in given timeout [ms], kill it
+        captureTimeout: 60000,
+
+        // Continuous Integration mode
+        // if true, it capture browsers, run tests and exit
+        singleRun: false
+    });
 };
