@@ -11,7 +11,7 @@ A simple angular-based quizz application
 
 # Build
 
-The following command smust all be run from the root of the directory:
+The following commands must all be run from the root of the directory:
 
  - `npm install`: this will install a whole lot of dependencies needed by the grunt tasks. Don't worry
    if it looks like it downloads the whole internet: that's normal and expected. Until a new task is introduced in the build file,

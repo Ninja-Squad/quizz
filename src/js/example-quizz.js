@@ -1,5 +1,4 @@
-angular.module("example-quizz", ['quizz', 'btford.markdown']);
-var quizz = {
+angular.module("example-quizz", ['quizz', 'btford.markdown']).constant('quizz', {
     title: 'Example Quizz',
     description: 'This quizz will test your knowledge about AngularJS',
     questions: [
@@ -49,4 +48,4 @@ var quizz = {
             ]
         }
     ]
-};
+});

@@ -1,14 +1,21 @@
-describe('Controller: MainCtrl', function() {
+angular.module('test-quizz', ['controllers-quizz']).
+    constant('constantQuizz', {
+        title: 'Constant Quizz',
+        questions: []
+    });
+
+describe('Controller: QuizzCtrl', function() {
     var $scope;
     var $window;
 
-    beforeEach(module('controllers-quizz'));
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(module('test-quizz'));
+    beforeEach(inject(function($rootScope, $controller, $injector) {
         $scope = $rootScope.$new();
         $window = {};
         $controller('QuizzCtrl', {
             $scope: $scope,
-            $window: $window
+            $window: $window,
+            $injector : $injector
         });
         $scope.init({
             title: 'Example Quizz',
@@ -177,13 +184,8 @@ describe('Controller: MainCtrl', function() {
         expect($scope.getScore()).toBe(1);
     });
 
-    it("should init with window variable", function() {
-        var fakeQuizz = {
-            title: 'Fake Quizz',
-            questions: []
-        };
-        $window.fakeQuizz = fakeQuizz;
-        $scope.initWithWindowVariable('fakeQuizz');
-        expect($scope.quizz).toBe(fakeQuizz);
+    it("should init with constant", function() {
+        $scope.initWithConstant('constantQuizz');
+        expect($scope.quizz.title).toBe('Constant Quizz');
     });
 });

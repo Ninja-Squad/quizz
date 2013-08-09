@@ -1,4 +1,4 @@
-angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$window', function($scope, $window) {
+angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$window', '$injector', function($scope, $window, $injector) {
     $scope.started = false;
     $scope.finished = false;
 
@@ -8,8 +8,8 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         }
     };
 
-    $scope.initWithWindowVariable = function(variable) {
-        $scope.init($window[variable]);
+    $scope.initWithConstant = function(constant) {
+        $scope.init($injector.get(constant));
     };
 
     $scope.init = function(quizz) {
