@@ -31,7 +31,7 @@
             </form>
 
             <div class="progress progress-striped">
-                <div class="bar" style="width: {{ (questionIndex() + 1) * 100 / quizz.questions.length }}%;"></div>
+                <div class="bar" style="width: {{ questionIndex() * 100 / quizz.questions.length }}%;"></div>
             </div>
 
             <ul class="pager">
