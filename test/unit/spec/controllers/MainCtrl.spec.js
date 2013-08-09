@@ -2,7 +2,7 @@ describe('Controller: MainCtrl', function() {
     var $scope;
     var $window;
 
-    beforeEach(module('quizz.controllers'));
+    beforeEach(module('quizz.controller'));
     beforeEach(inject(function($rootScope, $controller) {
         $scope = $rootScope.$new();
         $window = {};

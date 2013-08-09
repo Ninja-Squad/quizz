@@ -6,125 +6,17 @@
         <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/quizz.css" rel="stylesheet">
     </head>
-    <body ng-controller="MainCtrl" ng-init="initWithWindowVariable('quizz')" ng-cloak>
-        <div class="container">
-
-            <div id="intro" ng-show="!started" class="hero-unit">
-                <h1>{{ quizz.title }}</h1>
-                <p>{{ quizz.description }}</p>
-                <button id="start_button" class="btn btn-primary btn-large" ng-click="start()">Start</button>
-            </div>
-
-            <div id="question" ng-show="started && !finished">
-                <div class="row">
-                    <div class="span2" style="text-align: center;">
-                        <h1>{{ questionIndex() + 1 }} / {{ quizz.questions.length }}</h1>
-                        <div><i class="icon-question-sign question"></i></div>
-                    </div>
-                    <div class="span10">
-                        <div class="well" btf-markdown="currentQuestion.text"></div>
-                        <form class="well">
-                            <div ng-show="currentQuestion.type == 'radio'">
-                                <label class="radio" ng-repeat="answer in currentQuestion.answers">
-                                    <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer" />
-                                    {{ answer.text }}
-                                </label>
-                            </div>
-                            <div ng-show="currentQuestion.type == 'checkbox'">
-                                <label class="checkbox" ng-repeat="answer in currentQuestion.answers">
-                                    <input type="checkbox" ng-model="answer.checked"/>
-                                    {{ answer.text }}
-                                </label>
-                            </div>
-                            <div ng-show="currentQuestion.type == 'free'">
-                                <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Your answer" class="input-xxlarge"/>
-                            </div>
-                        </form>
-
-                        <div class="progress progress-striped">
-                            <div class="bar" style="width: {{ (questionIndex() + 1) * 100 / quizz.questions.length }}%;"></div>
-                        </div>
-
-                        <ul class="pager">
-                            <li class="previous" ng-show="hasPrevious()" ng-click="previous()">
-                                <a id="previous_button" href="">&larr; Previous</a>
-                            </li>
-                            <li class="next" ng-show="hasNext()" ng-click="next()">
-                                <a id="next_button" href="">Next &rarr;</a>
-                            </li>
-                            <li class="next" ng-show="!hasNext()" ng-click="finish()">
-                                <a id="finish_button" href="">Finish &rarr;</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div id="result" ng-show="finished">
-                <h1>Your score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
-
-                <div ng-repeat="question in quizz.questions" class="result-question">
-                    <hr/>
-                    <div class="row">
-                        <div class="span1" style="text-align: center;">
-                            <i class="icon-ok-sign correct" ng-show="isAnswerCorrect(question)"></i>
-                            <i class="icon-remove-sign incorrect" ng-show="!isAnswerCorrect(question)"></i>
-                        </div>
-                        <div class="span11">
-                            <div class="well" btf-markdown="question.text"></div>
-                            <table class="table" ng-show="['radio', 'checkbox'].indexOf(question.type) >= 0">
-                                <thead>
-                                    <tr>
-                                        <th class="tick">Yours</th>
-                                        <th class="tick">Correct</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="answer in question.answers">
-                                        <td class="tick">
-                                            <i class="icon-ok" ng-show="isAnswerSelected(question, answer) && answer.correct"></i>
-                                            <i class="icon-remove" ng-show="isAnswerSelected(question, answer) && !answer.correct"></i>
-                                        </td>
-                                        <td class="tick">
-                                            <i class="icon-ok" ng-show="answer.correct"></i>
-                                        </td>
-                                        <td>{{ answer.text }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div ng-show="question.type == 'free'">
-                                <div class="row-fluid">
-                                    <div class="span2">
-                                        <strong>Yours:</strong>
-                                    </div>
-                                    <div class="span10 free-yours">
-                                        <i class="icon-ok" ng-show="isAnswerCorrect(question)"> </i>
-                                        <i class="icon-remove" ng-show="!isAnswerCorrect(question)"> </i>
-                                        {{ question.typedAnswer }}
-                                    </div>
-                                </div>
-                                <div class="row-fluid free-correct">
-                                    <div class="span2"><strong>Correct:</strong></div>
-                                    <div class="span10">
-                                        <ul class="unstyled">
-                                            <li ng-repeat="answer in question.answers"><i class="icon-ok"></i> {{ answer }}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <body>
+        <div class="container" ng-controller="MainCtrl" ng-init="initWithWindowVariable('quizz')">
+            <div ng-include="'templates/Quizz.html'"></div>
         </div>
 
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-markdown-directive/markdown.js"></script>
         <script src="bower_components/showdown/compressed/showdown.js"></script>
-        <script src="js/app.js"></script>
         <script src="js/controllers/MainCtrl.js"></script>
         <script>
+            angular.module("quizz", ['btford.markdown', 'quizz.controller']);
             var quizz = {
                 title: 'Example Quizz',
                 description: 'This quizz will test your knowledge about AngularJS',

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                 options: {
                     port: 9001,
                     base: 'src',
-                    keepalive: true,
+                    keepalive: true
                 }
             },
             e2e: {
