@@ -1,1 +1,1 @@
-angular.module("quizz", []);
+angular.module("quizz", ['btford.markdown']);

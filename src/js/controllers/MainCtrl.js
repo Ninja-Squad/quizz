@@ -69,4 +69,10 @@ angular.module("quizz").controller('MainCtrl', ['$scope', '$window', function($s
             return answer.checked;
         }
     };
+
+    $window.onbeforeunload = function () {
+        if ($scope.started && !$scope.finished) {
+            return "Beware: leaving the page will make you lose all your answers!";
+        }
+    };
 }]);

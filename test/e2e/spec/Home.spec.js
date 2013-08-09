@@ -17,7 +17,7 @@ describe('Home page', function() {
         });
 
         it('should display first question when clicking start', function() {
-            expect(element('#question h1').text()).toContain("Question 1 / 3");
+            expect(element('#question h1').text()).toContain("1 / 3");
 
             expect(element('#intro:visible').count()).toBe(0);
             expect(element('#question:visible').count()).toBe(1);
@@ -34,7 +34,7 @@ describe('Home page', function() {
         it('should go to the next question when clicking next', function() {
             element('#next_button').click();
 
-            expect(element('#question h1').text()).toContain("Question 2 / 3");
+            expect(element('#question h1').text()).toContain("2 / 3");
 
             expect(element('#previous_button:visible').count()).toBe(1);
             expect(element('#next_button:visible').count()).toBe(1);
@@ -47,7 +47,7 @@ describe('Home page', function() {
             element('#next_button').click();
             element('#previous_button').click();
 
-            expect(element('#question h1').text()).toContain("Question 1 / 3");
+            expect(element('#question h1').text()).toContain("1 / 3");
 
             expect(element('input[type=radio]:visible:checked').count()).toBe(1);
             expect(element('input[type=radio]:visible:eq(0):checked').count()).toBe(1);
@@ -57,7 +57,7 @@ describe('Home page', function() {
             element('#next_button').click();
             element('#next_button').click();
 
-            expect(element('#question h1').text()).toContain("Question 3 / 3");
+            expect(element('#question h1').text()).toContain("3 / 3");
 
             expect(element('#previous_button:visible').count()).toBe(1);
             expect(element('#next_button:visible').count()).toBe(0);
@@ -82,7 +82,7 @@ describe('Home page', function() {
             element('#previous_button').click();
             element('#next_button').click();
 
-            expect(element('#question h1').text()).toContain("Question 3 / 3");
+            expect(element('#question h1').text()).toContain("3 / 3");
 
             expect(element('input[type=checkbox]:visible:checked').count()).toBe(2);
             expect(element('input[type=checkbox]:visible:eq(1):checked').count()).toBe(1);
