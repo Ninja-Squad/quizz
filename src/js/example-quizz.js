@@ -1,4 +1,4 @@
-angular.module("example-quizz", ['quizz', 'btford.markdown']).constant('quizz', {
+var quizz = {
     title: 'Example Quizz',
     description: 'This quizz will test your knowledge about AngularJS',
     questions: [
@@ -45,7 +45,20 @@ angular.module("example-quizz", ['quizz', 'btford.markdown']).constant('quizz', 
                     text: 'A hammer',
                     correct: false
                 }
-            ]
+            ],
+            explanation: 'Here\'s what each tool is for:\n\n' +
+                '- Excel is a Microsoft spreadsheet;\n' +
+                '- Grunt is used to execute various tasks like minifying JS or CSS files;\n' +
+                '- Karma is a test runner that executes JavaScript tests in various browsers;\n' +
+                '- A hammer is used to knock on nails, or on anything else you could imagine.'
         }
     ]
-});
+};
+angular.module("example-quizz", ['quizz', 'btford.markdown']);
+angular.module("example-quizz").constant('quizz', quizz);
+
+var quizzWithoutPreviousButton = angular.extend({}, quizz);
+quizzWithoutPreviousButton.options = {
+    showPrevious: false
+};
+angular.module("example-quizz").constant('quizzWithoutPreviousButton', quizzWithoutPreviousButton);

@@ -7,8 +7,10 @@ angular.module('test-quizz', ['controllers-quizz']).
 describe('Controller: QuizzCtrl', function() {
     var $scope;
     var $window;
+    var exampleQuizz;
 
     beforeEach(module('test-quizz'));
+
     beforeEach(inject(function($rootScope, $controller, $injector) {
         $scope = $rootScope.$new();
         $window = {};
@@ -17,7 +19,7 @@ describe('Controller: QuizzCtrl', function() {
             $window: $window,
             $injector : $injector
         });
-        $scope.init({
+        exampleQuizz = {
             title: 'Example Quizz',
             description: 'This quizz will test your knowledge about AngularJS',
             questions: [
@@ -64,12 +66,22 @@ describe('Controller: QuizzCtrl', function() {
                             text: 'A hammer',
                             correct: false
                         }
-                    ]
+                    ],
+                    explanation: 'Here\'s what each tool is for:\n\n' +
+                        '- Excel is a Microsoft spreadsheet;\n' +
+                        '- Grunt is used to execute various tasks like minifying JS or CSS files;\n' +
+                        '- Karma is a test runner that executes JavaScript tests in various browsers;\n' +
+                        '- A hammer is used to knock on nails, or on anything else you could imagine.'
                 }
             ]
-        });
+        };
+        $scope.init(exampleQuizz);
     }));
-    
+
+    it('should have default options after init', function() {
+        expect($scope.quizz.options.showPrevious).toBe(true);
+    });
+
     it('should not be started nor finished at beginning', function() {
         expect($scope.started).toBe(false);
         expect($scope.finished).toBe(false);
@@ -82,10 +94,18 @@ describe('Controller: QuizzCtrl', function() {
         expect($scope.finished).toBe(false);
     });
 
+    it('should not be started nor finished and have no current question after init', function() {
+        $scope.start();
+        $scope.init(exampleQuizz);
+        expect($scope.started).toBe(false);
+        expect($scope.finished).toBe(false);
+        expect($scope.currentQuestion).toBeFalsy();
+    });
+
     it('should have next question but no previous after start', function() {
         $scope.start();
-        expect($scope.hasPrevious()).toBe(false);
-        expect($scope.hasNext()).toBe(true);
+        expect($scope.showPrevious()).toBe(false);
+        expect($scope.showNext()).toBe(true);
         expect($scope.currentQuestion).toBe($scope.quizz.questions[0]);
         expect($scope.questionIndex()).toBe(0);
     });
@@ -93,19 +113,30 @@ describe('Controller: QuizzCtrl', function() {
     it('should have next question and previous after start and next', function() {
         $scope.start();
         $scope.next();
-        expect($scope.hasPrevious()).toBe(true);
-        expect($scope.hasNext()).toBe(true);
+        expect($scope.showPrevious()).toBe(true);
+        expect($scope.showNext()).toBe(true);
         expect($scope.currentQuestion).toBe($scope.quizz.questions[1]);
         expect($scope.questionIndex()).toBe(1);
     });
 
+    it('should have previous but not show it after start and next when showPrevious option is false', function() {
+        exampleQuizz.options = {
+            showPrevious: false
+        };
+        $scope.init(exampleQuizz);
+        $scope.start();
+        $scope.next();
+        expect($scope.showPrevious()).toBe(false);
+        expect($scope.hasPrevious()).toBe(true);
+    });
+
     it('should have no next question but previous at last question', function() {
         $scope.start();
-        while ($scope.hasNext()) {
+        while ($scope.showNext()) {
             $scope.next();
         }
-        expect($scope.hasPrevious()).toBe(true);
-        expect($scope.hasNext()).toBe(false);
+        expect($scope.showPrevious()).toBe(true);
+        expect($scope.showNext()).toBe(false);
         expect($scope.currentQuestion).toBe($scope.quizz.questions[$scope.quizz.questions.length - 1]);
         expect($scope.questionIndex()).toBe($scope.quizz.questions.length - 1);
     });
@@ -114,8 +145,8 @@ describe('Controller: QuizzCtrl', function() {
         $scope.start();
         $scope.next();
         $scope.previous();
-        expect($scope.hasPrevious()).toBe(false);
-        expect($scope.hasNext()).toBe(true);
+        expect($scope.showPrevious()).toBe(false);
+        expect($scope.showNext()).toBe(true);
         expect($scope.questionIndex()).toBe(0);
     });
 

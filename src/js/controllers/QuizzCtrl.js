@@ -2,9 +2,9 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.started = false;
     $scope.finished = false;
 
-    $window.onbeforeunload = function() {
-        if ($scope.started && !$scope.finished) {
-            return "Beware: leaving the page will make you lose all your answers!";
+    var defaultQuizz = {
+        options: {
+            showPrevious: true
         }
     };
 
@@ -13,7 +13,10 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     };
 
     $scope.init = function(quizz) {
-        $scope.quizz = quizz;
+        $scope.quizz = angular.extend({}, defaultQuizz, quizz);
+        $scope.started = false;
+        $scope.finished = false;
+        $scope.currentQuestion = null;
     };
 
     $scope.start = function() {
@@ -37,6 +40,12 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
 
     $scope.hasPrevious = function() {
         return questionIndex() > 0;
+    };
+
+    $scope.showNext = $scope.hasNext;
+
+    $scope.showPrevious = function() {
+        return $scope.hasPrevious() && $scope.quizz.options.showPrevious;
     };
 
     $scope.next = function() {

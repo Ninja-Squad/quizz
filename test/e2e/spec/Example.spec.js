@@ -124,6 +124,11 @@ describe('Example page', function() {
 
             expect(element('.quizz-result-question:eq(1) .quizz-free-correct:visible').text()).toContain("ngRepeat ng-repeat");
         });
+
+        it("should display the answer explanation when available", function() {
+            expect(element('.quizz-result-question:eq(0) .quizz-explanation:visible').count()).toBe(0);
+            expect(element('.quizz-result-question:eq(2) .quizz-explanation:visible').count()).toBe(1);
+        });
     });
 
 });

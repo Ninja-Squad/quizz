@@ -1,6 +1,6 @@
-<div class="quizz-intro" ng-show="!started" class="hero-unit">
+<div class="quizz-intro hero-unit" ng-show="!started">
     <h1>{{ quizz.title }}</h1>
-    <p>{{ quizz.description }}</p>
+    <p btf-markdown="quizz.description"></p>
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
@@ -101,6 +101,10 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="quizz-explanation" ng-show="question.explanation">
+                    <h2>Explanation</h2>
+                    <div btf-markdown="question.explanation"></div>
                 </div>
             </div>
         </div>

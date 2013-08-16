@@ -17,3 +17,6 @@ th.quizz-tick, td.quizz-tick {
     text-align: center;
     width: 10%;
 }
+.quizz-explanation h2 {
+    font-size: 1.5em;
+}
