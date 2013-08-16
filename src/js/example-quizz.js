@@ -54,7 +54,7 @@ var quizz = {
         }
     ]
 };
-angular.module("example-quizz", ['quizz', 'btford.markdown']);
+angular.module("example-quizz", ['quizz', 'btford.markdown', 'ngAnimate']);
 angular.module("example-quizz").constant('quizz', quizz);
 
 var quizzWithoutPreviousButton = angular.extend({}, quizz);

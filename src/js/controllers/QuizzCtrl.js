@@ -18,6 +18,7 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         $scope.started = false;
         $scope.finished = false;
         $scope.currentQuestion = null;
+        $scope.resultFilter = $scope.allResultFilter;
     };
 
     $scope.start = function() {
@@ -105,6 +106,4 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
     $scope.errorsOnlyResultFilter = function(question) {
         return !isAnswerCorrect(question);
     };
-
-    $scope.resultFilter = $scope.allResultFilter;
 }]);

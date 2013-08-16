@@ -84,6 +84,7 @@ module.exports = function(grunt) {
                 expand: true,
                 src: [
                     'angular/angular.min.js',
+                    'angular-animate/angular-animate.min.js',
                     'angular-markdown-directive/markdown.js',
                     'showdown/compressed/showdown.js'
                 ],

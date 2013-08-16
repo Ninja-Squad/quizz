@@ -61,8 +61,9 @@
         </li>
     </ul>
 
+    <hr/>
+
     <div ng-repeat="question in quizz.questions | filter:resultFilter" class="quizz-result-question">
-        <hr/>
         <div class="row">
             <div class="span2" style="text-align: center;">
                 <i class="icon-ok-sign quizz-correct" ng-show="isAnswerCorrect(question)"></i>
@@ -117,5 +118,7 @@
                 </div>
             </div>
         </div>
+
+        <hr/>
     </div>
 </div>
