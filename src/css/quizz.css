@@ -20,3 +20,33 @@ th.quizz-tick, td.quizz-tick {
 .quizz-explanation h2 {
     font-size: 1.5em;
 }
+
+.quizz-question-sign-even {
+    -webkit-animation:spin .5s linear;
+    -moz-animation:spin .5s linear;
+    animation:spin .5s linear;
+}
+.quizz-question-sign-odd {
+    -webkit-animation:spin2 .5s linear;
+    -moz-animation:spin2 .5s linear;
+    animation:spin2 .5s linear;
+}
+@-moz-keyframes spin {
+    100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+}
+
+@-moz-keyframes spin2 {
+    100% { -moz-transform: rotate(-360deg); }
+}
+@-webkit-keyframes spin2 {
+    100% { -webkit-transform: rotate(-360deg); }
+}
+@keyframes spin2 {
+    100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); }
+}

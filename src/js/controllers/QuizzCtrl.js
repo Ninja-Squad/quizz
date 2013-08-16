@@ -34,6 +34,10 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
 
     $scope.questionIndex = questionIndex;
 
+    $scope.questionOddity = function() {
+        return questionIndex() % 2 == 0 ? 'even' : 'odd';
+    };
+
     $scope.hasNext = function() {
         return questionIndex() < quizzLength() - 1;
     };

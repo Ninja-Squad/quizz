@@ -108,6 +108,7 @@ describe('Controller: QuizzCtrl', function() {
         expect($scope.showNext()).toBe(true);
         expect($scope.currentQuestion).toBe($scope.quizz.questions[0]);
         expect($scope.questionIndex()).toBe(0);
+        expect($scope.questionOddity()).toBe('even');
     });
 
     it('should have next question and previous after start and next', function() {
@@ -117,6 +118,7 @@ describe('Controller: QuizzCtrl', function() {
         expect($scope.showNext()).toBe(true);
         expect($scope.currentQuestion).toBe($scope.quizz.questions[1]);
         expect($scope.questionIndex()).toBe(1);
+        expect($scope.questionOddity()).toBe('odd');
     });
 
     it('should have previous but not show it after start and next when showPrevious option is false', function() {
