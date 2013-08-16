@@ -217,6 +217,26 @@ describe('Controller: QuizzCtrl', function() {
         expect($scope.getScore()).toBe(1);
     });
 
+    it("should filter all results initially", function() {
+        expect($scope.resultFilter == $scope.allResultFilter);
+    });
+
+    it("should filter all results correctly", function() {
+        var question = $scope.quizz.questions[0];
+        question.selectedAnswer = question.answers[0];
+        expect($scope.allResultFilter(question)).toBe(true);
+        question.selectedAnswer = question.answers[1];
+        expect($scope.allResultFilter(question)).toBe(true);
+    });
+
+    it("should filter errors only correctly", function() {
+        var question = $scope.quizz.questions[0];
+        question.selectedAnswer = question.answers[0];
+        expect($scope.errorsOnlyResultFilter(question)).toBe(true);
+        question.selectedAnswer = question.answers[1];
+        expect($scope.errorsOnlyResultFilter(question)).toBe(false);
+    });
+
     it("should init with constant", function() {
         $scope.initWithConstant('constantQuizz');
         expect($scope.quizz.title).toBe('Constant Quizz');

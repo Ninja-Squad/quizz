@@ -129,6 +129,17 @@ describe('Example page', function() {
             expect(element('.quizz-result-question:eq(0) .quizz-explanation:visible').count()).toBe(0);
             expect(element('.quizz-result-question:eq(2) .quizz-explanation:visible').count()).toBe(1);
         });
+
+        it("should display all questions by default", function() {
+            expect(element('.quizz-result .nav li.active').text()).toContain('All');
+            expect(element('.quizz-result-question:visible').count()).toBe(3);
+        });
+
+        it("should display errors only when clicking Errors only pill", function() {
+            element('.quizz-result .nav li a:eq(1)').click();
+            expect(element('.quizz-result .nav li.active').text()).toContain('Errors only');
+            expect(element('.quizz-result-question:visible').count()).toBe(2);
+        });
     });
 
 });

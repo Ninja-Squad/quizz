@@ -52,7 +52,16 @@
 <div class="quizz-result" ng-show="finished">
     <h1>Your score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
 
-    <div ng-repeat="question in quizz.questions" class="quizz-result-question">
+    <ul class="nav nav-pills">
+        <li ng-class="{active: resultFilter == allResultFilter}">
+            <a href="" ng-click="resultFilter = allResultFilter">All</a>
+        </li>
+        <li ng-class="{active: resultFilter == errorsOnlyResultFilter}">
+            <a href="" ng-click="resultFilter = errorsOnlyResultFilter">Errors only</a>
+        </li>
+    </ul>
+
+    <div ng-repeat="question in quizz.questions | filter:resultFilter" class="quizz-result-question">
         <hr/>
         <div class="row">
             <div class="span2" style="text-align: center;">

@@ -1,6 +1,7 @@
 angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$window', '$injector', function($scope, $window, $injector) {
     $scope.started = false;
     $scope.finished = false;
+    $scope.resultSelector  = 'all';
 
     var defaultQuizz = {
         options: {
@@ -96,4 +97,14 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
             return answer.checked;
         }
     };
+
+    $scope.allResultFilter = function(question) {
+        return true;
+    };
+
+    $scope.errorsOnlyResultFilter = function(question) {
+        return !isAnswerCorrect(question);
+    };
+
+    $scope.resultFilter = $scope.allResultFilter;
 }]);
