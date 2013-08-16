@@ -11,7 +11,7 @@ describe('Example page', function() {
         it('should not have a previous button on the second question', function() {
             element('.quizz-next-button').click();
             element('.quizz-next-button').click();
-            expect(element('.quizz-previous-button.visible').count()).toBe(0);
+            expect(element('.quizz-previous-button:visible').count()).toBe(0);
         });
     });
 

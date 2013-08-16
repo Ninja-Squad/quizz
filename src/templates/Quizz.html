@@ -35,10 +35,10 @@
             </div>
 
             <ul class="pager">
-                <li class="previous" ng-show="hasPrevious()" ng-click="previous()">
+                <li class="previous" ng-show="showPrevious()" ng-click="previous()">
                     <a class="quizz-previous-button" href="">&larr; Previous</a>
                 </li>
-                <li class="next" ng-show="hasNext()" ng-click="next()">
+                <li class="next" ng-show="showNext()" ng-click="next()">
                     <a class="quizz-next-button" href="">Next &rarr;</a>
                 </li>
                 <li class="next" ng-show="!hasNext()" ng-click="finish()">
