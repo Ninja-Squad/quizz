@@ -7,11 +7,12 @@ A simple angular-based quizz application
 
  - Install [node.js](http://nodejs.org/). node.js now comes with npm. If not, install [npm](https://github.com/isaacs/npm)
  - Install [grunt](http://gruntjs.com/)
- - Set the CHROME_BIN environment vriable pointing to your chrome executable (needed for end-to-end tests)
+ - Set the CHROME_BIN environment variable pointing to your chrome executable (needed for end-to-end tests) :
+    - on OSX : `export CHROME_BIN=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome`
 
 # Build
 
-The following commands must all be run from the root of the directory:
+The following commands must all be run from the root directory:
 
  - `npm install`: this will install a whole lot of dependencies needed by the grunt tasks. Don't worry
    if it looks like it downloads the whole internet: that's normal and expected. Until a new task is introduced in the build file,
