@@ -50,11 +50,11 @@ module.exports = function(grunt) {
 
         concat: {
             'quizz-no-template': {
-                src: ['src/js/quizz-module-no-template.js', 'src/js/controllers/*.js'],
+                src: ['src/js/quizz-module-no-template.js', 'src/js/controllers/*.js', 'src/js/directives/*.js'],
                 dest: 'dist/js/quizz.js'
             },
             'quizz-template': {
-                src: ['src/js/quizz-module-template.js', 'src/js/controllers/*.js', 'tmp/templates-quizz.js'],
+                src: ['src/js/quizz-module-template.js', 'src/js/controllers/*.js', 'src/js/directives/*.js', 'tmp/templates-quizz.js'],
                 dest: 'dist/js/quizz-tmpl.js'
             }
         },
@@ -85,7 +85,6 @@ module.exports = function(grunt) {
                 src: [
                     'angular/angular.min.js',
                     'angular-animate/angular-animate.min.js',
-                    'angular-markdown-directive/markdown.js',
                     'showdown/compressed/showdown.js'
                 ],
                 flatten: true,
