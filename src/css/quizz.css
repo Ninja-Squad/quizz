@@ -1,25 +1,26 @@
-.quizz-question .icon-question-sign {
-    display: block;
+.quizz-question-sign-container {
     margin-top: 20px;
+}
+.quizz-question .glyphicon-question-sign {
+    display: block;
     font-size: 40px;
     color: #0064cd;
 }
-@media (min-width: 600px) {
-    .container {
-        margin-top: 60px;
-    }
-    .quizz-question .icon-question-sign {
-        font-size: 60px;
-        color: #0064cd;
-    }
-}
 .quizz-correct {
-    font-size: 60px;
+    font-size: 40px;
     color: #46a546;
 }
 .quizz-incorrect {
-    font-size: 60px;
+    font-size: 40px;
     color: #9d261d;
+}
+@media (min-width: 992px) {
+    .container {
+        margin-top: 60px;
+    }
+    .quizz-question .glyphicon-question-sign, .quizz-correct, .quizz-incorrect {
+        font-size: 60px;
+    }
 }
 th.quizz-tick, td.quizz-tick {
     text-align: center;
