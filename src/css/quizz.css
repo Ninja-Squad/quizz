@@ -1,3 +1,9 @@
+.quizz-question .icon-question-sign {
+    display: block;
+    margin-top: 20px;
+    font-size: 40px;
+    color: #0064cd;
+}
 @media (min-width: 600px) {
     .container {
         margin-top: 60px;
@@ -6,12 +12,6 @@
         font-size: 60px;
         color: #0064cd;
     }
-}
-.quizz-question .icon-question-sign {
-    display: block;
-    margin-top: 20px;
-    font-size: 40px;
-    color: #0064cd;
 }
 .quizz-correct {
     font-size: 60px;
