@@ -1,0 +1,17 @@
+{
+  "name": "quizz",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Ninja-Squad/quizz",
+  "authors": [
+    "jbnizet"
+  ],
+  "description": "A small angular app to easily create quizzes from json",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular-animate": "git://github.com/angular/bower-angular-animate.git#1.2.0-rc.2",
+    "angular-mocks": "git://github.com/angular/bower-angular-mocks.git#1.2.0-rc.2",
+    "showdown": "git://github.com/coreyti/showdown.git#~0.3.1"
+  }
+}
