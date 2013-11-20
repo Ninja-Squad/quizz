@@ -22,13 +22,13 @@
                 <div class="form-group" ng-show="currentQuestion.type == 'radio'">
                     <label class="radio" ng-repeat="answer in currentQuestion.answers">
                         <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer"/>
-                        {{ answer.text }}
+                        <span btf-markdown="answer.text"></span>
                     </label>
                 </div>
                 <div class="form-group" ng-show="currentQuestion.type == 'checkbox'">
                     <label class="checkbox" ng-repeat="answer in currentQuestion.answers">
                         <input type="checkbox" ng-model="answer.checked"/>
-                        {{ answer.text }}
+                        <span btf-markdown="answer.text"></span>
                     </label>
                 </div>
                 <div class="form-group" ng-show="currentQuestion.type == 'free'">
@@ -94,7 +94,7 @@
                         <td class="quizz-tick">
                             <span class="glyphicon glyphicon-ok" ng-show="answer.correct"></span>
                         </td>
-                        <td>{{ answer.text }}</td>
+                        <td btf-markdown="answer.text"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -112,9 +112,10 @@
                     <div class="row quizz-free-correct">
                         <div class="col-xs-2"><strong>Correct:</strong></div>
                         <div class="col-xs-10">
-                            <ul class="unstyled">
+                            <ul class="unstyled" ng-show="question.answers.length > 1">
                                 <li ng-repeat="answer in question.answers"><span class="glyphicon glyphicon-ok"></span> {{ answer }}</li>
                             </ul>
+                            <span ng-show="question.answers.length == 1">{{ question.answers[0] }}</span>
                         </div>
                     </div>
                 </div>

@@ -7,15 +7,15 @@ var quizz = {
             text: '**AngularJS** is a...',
             answers: [
                 {
-                    text: 'Java framework',
+                    text: '**Java** framework',
                     correct: false
                 },
                 {
-                    text: 'JavaScript Framework',
+                    text: '**JavaScript** Framework',
                     correct: true
                 },
                 {
-                    text: 'Ruby Framework',
+                    text: '**Ruby** Framework',
                     correct: false
                 }
             ]

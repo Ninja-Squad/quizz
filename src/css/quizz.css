@@ -6,6 +6,9 @@
     font-size: 40px;
     color: #0064cd;
 }
+.quizz-question label.checkbox, .quizz-question label.radio {
+    font-weight: normal;
+}
 .quizz-correct {
     font-size: 40px;
     color: #46a546;
