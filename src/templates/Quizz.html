@@ -115,7 +115,7 @@
                             <ul class="unstyled" ng-show="question.answers.length > 1">
                                 <li ng-repeat="answer in question.answers"><span class="glyphicon glyphicon-ok"></span> {{ answer }}</li>
                             </ul>
-                            <span ng-show="question.answers.length == 1">{{ question.answers[0] }}</span>
+                            <div ng-show="question.answers.length == 1"><span class="glyphicon glyphicon-ok"></span> {{ question.answers[0] }}</div>
                         </div>
                     </div>
                 </div>
