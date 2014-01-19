@@ -1,7 +1,7 @@
 <div class="quizz-intro jumbotron" ng-show="!started">
     <h1>{{ quizz.title }}</h1>
     <p btf-markdown="quizz.description"></p>
-    <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
+    <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Démarrer</button>
 </div>
 
 <div class="quizz-question" ng-show="started && !finished">
@@ -32,7 +32,7 @@
                     </label>
                 </div>
                 <div class="form-group" ng-show="currentQuestion.type == 'free'">
-                    <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Your answer" class="form-control"/>
+                    <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Votre réponse" class="form-control"/>
                 </div>
             </form>
 
@@ -42,13 +42,13 @@
 
             <ul class="pager">
                 <li class="previous" ng-show="showPrevious()" ng-click="previous()">
-                    <a class="quizz-previous-button" href="">&larr; Previous</a>
+                    <a class="quizz-previous-button" href="">&larr; Précédente</a>
                 </li>
                 <li class="next" ng-show="showNext()" ng-click="next()">
-                    <a class="quizz-next-button" href="">Next &rarr;</a>
+                    <a class="quizz-next-button" href="">Suivante &rarr;</a>
                 </li>
                 <li class="next" ng-show="!hasNext()" ng-click="finish()">
-                    <a class="quizz-finish-button" href="">Finish &rarr;</a>
+                    <a class="quizz-finish-button" href="">Terminer &rarr;</a>
                 </li>
             </ul>
         </div>
@@ -56,14 +56,14 @@
 </div>
 
 <div class="quizz-result" ng-show="finished">
-    <h1>Your score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
+    <h1>Votre score: {{ (getScore() * 100 / quizz.questions.length) | number:0}} % ({{ getScore() }} / {{ quizz.questions.length }})</h1>
 
     <ul class="nav nav-pills">
         <li ng-class="{active: resultFilter == allResultFilter}">
-            <a href="" ng-click="resultFilter = allResultFilter">All</a>
+            <a href="" ng-click="resultFilter = allResultFilter">Toutes</a>
         </li>
         <li ng-class="{active: resultFilter == errorsOnlyResultFilter}">
-            <a href="" ng-click="resultFilter = errorsOnlyResultFilter">Errors only</a>
+            <a href="" ng-click="resultFilter = errorsOnlyResultFilter">En erreur uniquement</a>
         </li>
     </ul>
 
@@ -80,8 +80,8 @@
                 <table class="table" ng-show="['radio', 'checkbox'].indexOf(question.type) >= 0">
                     <thead>
                     <tr>
-                        <th class="quizz-tick">Yours</th>
-                        <th class="quizz-tick">Correct</th>
+                        <th class="quizz-tick">Votre réponse</th>
+                        <th class="quizz-tick">Réponse correcte</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -101,7 +101,7 @@
                 <div ng-show="question.type == 'free'">
                     <div class="row">
                         <div class="col-xs-2">
-                            <strong>Yours:</strong>
+                            <strong>Votre réponse:</strong>
                         </div>
                         <div class="col-xs-10 quizz-free-yours">
                             <span class="glyphicon glyphicon-ok" ng-show="isAnswerCorrect(question)"> </span>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="row quizz-free-correct">
-                        <div class="col-xs-2"><strong>Correct:</strong></div>
+                        <div class="col-xs-2"><strong>Réponse correcte:</strong></div>
                         <div class="col-xs-10">
                             <ul class="unstyled" ng-show="question.answers.length > 1">
                                 <li ng-repeat="answer in question.answers"><span class="glyphicon glyphicon-ok"></span> {{ answer }}</li>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="quizz-explanation" ng-show="question.explanation">
-                    <h2>Explanation</h2>
+                    <h2>Explication</h2>
                     <div btf-markdown="question.explanation"></div>
                 </div>
             </div>
