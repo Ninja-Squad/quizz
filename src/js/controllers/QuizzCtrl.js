@@ -58,8 +58,25 @@ angular.module("controllers-quizz", []).controller('QuizzCtrl', ['$scope', '$win
         $scope.currentQuestion = $scope.quizz.questions[questionIndex() + 1];
     };
 
+    $scope.nextScreen = function() {
+        if(!$scope.started){
+            $scope.start();
+        }
+        else if($scope.hasNext()){
+            $scope.next();
+        } else {
+            $scope.finish();
+        }
+    };
+
     $scope.previous = function() {
         $scope.currentQuestion = $scope.quizz.questions[questionIndex() - 1];
+    };
+
+    $scope.previousScreen = function() {
+        if($scope.showPrevious()){
+            $scope.previous();
+        }
     };
 
     $scope.finish = function() {

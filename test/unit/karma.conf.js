@@ -12,6 +12,8 @@ module.exports = function (config) {
             'src/bower_components/angular/angular.js',
             'src/bower_components/angular-mocks/angular-mocks.js',
             'src/bower_components/showdown/compressed/showdown.js',
+            'src/bower_components/mgo-mousetrap/mousetrap.js',
+            'src/bower_components/mgo-mousetrap/wMousetrap.js',
             'src/js/controllers/*.js',
             'test/unit/spec/**/*.js'
         ],

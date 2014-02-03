@@ -4,7 +4,7 @@
     <button class="btn btn-primary btn-large quizz-start-button" ng-click="start()">Start</button>
 </div>
 
-<div class="quizz-question" ng-show="started && !finished">
+<div class="quizz-question" ng-show="started && !finished" w-mousetrap="{left: previousScreen, right: nextScreen, enter: nextScreen}">
     <div class="row">
         <div class="col-md-2 col-sd-12 row text-center">
             <h1 class="col-md-12 col-xs-6">{{ questionIndex() + 1 }} / {{ quizz.questions.length }}</h1>
@@ -21,18 +21,18 @@
             <form role="form" class="well">
                 <div class="form-group" ng-show="currentQuestion.type == 'radio'">
                     <label class="radio" ng-repeat="answer in currentQuestion.answers">
-                        <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer"/>
+                        <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer" class="mousetrap"/>
                         <span btf-markdown="answer.text"></span>
                     </label>
                 </div>
                 <div class="form-group" ng-show="currentQuestion.type == 'checkbox'">
                     <label class="checkbox" ng-repeat="answer in currentQuestion.answers">
-                        <input type="checkbox" ng-model="answer.checked"/>
+                        <input type="checkbox" ng-model="answer.checked" class="mousetrap"/>
                         <span btf-markdown="answer.text"></span>
                     </label>
                 </div>
                 <div class="form-group" ng-show="currentQuestion.type == 'free'">
-                    <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Your answer" class="form-control"/>
+                    <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Your answer" class="form-control mousetrap"/>
                 </div>
             </form>
 

@@ -85,7 +85,9 @@ module.exports = function(grunt) {
                 src: [
                     'angular/angular.min.js',
                     'angular-animate/angular-animate.min.js',
-                    'showdown/compressed/showdown.js'
+                    'showdown/compressed/showdown.js',
+                    'mgo-mousetrap/mousetrap.js',
+                    'mgo-mousetrap/wMousetrap.js'
                 ],
                 flatten: true,
                 dest: 'dist/js/'
