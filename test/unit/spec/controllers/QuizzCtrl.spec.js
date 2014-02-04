@@ -241,4 +241,61 @@ describe('Controller: QuizzCtrl', function() {
         $scope.initWithConstant('constantQuizz');
         expect($scope.quizz.title).toBe('Constant Quizz');
     });
+
+    it("should go to the correct next screen", function() {
+        $scope.start();
+        $scope.nextScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(false);
+        expect($scope.questionIndex()).toBe(1);
+    });
+
+    it("should start if not started", function() {
+        expect($scope.started).toBe(false);
+        $scope.nextScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(false);
+        expect($scope.questionIndex()).toBe(0);
+    });
+
+    it("should go to the correct next screen at the end", function() {
+        $scope.start();
+        while ($scope.showNext()) {
+            $scope.next();
+        }
+        $scope.nextScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(true);
+        expect($scope.currentQuestion).toBeFalsy();
+    });
+
+    it("should go to the correct previous screen", function() {
+        $scope.start();
+        $scope.next();
+        $scope.previousScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(false);
+        expect($scope.questionIndex()).toBe(0);
+    });
+
+     it("should not go to the previous screen if not allowed", function() {
+        exampleQuizz.options = {
+            showPrevious: false
+        };
+        $scope.init(exampleQuizz);
+        $scope.start();
+        $scope.next();
+        $scope.previousScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(false);
+        expect($scope.questionIndex()).toBe(1);
+    });
+
+    it("should go to the correct previous screen at the beginning", function() {
+        $scope.start();
+        $scope.previousScreen();
+        expect($scope.started).toBe(true);
+        expect($scope.finished).toBe(false);
+        expect($scope.questionIndex()).toBe(0);
+    });
 });
