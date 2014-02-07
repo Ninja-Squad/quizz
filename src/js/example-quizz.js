@@ -51,7 +51,7 @@ var quizz = {
                 '- Grunt is used to execute various tasks like minifying JS or CSS files;\n' +
                 '- Karma is a test runner that executes JavaScript tests in various browsers;\n' +
                 '- A hammer is used to knock on nails, or on anything else you could imagine.'
-        }
+        }// Insert your next question here (keep the comment for the generator).
     ]
 };
 angular.module("example-quizz", ['quizz', 'btford.markdown', 'ngAnimate', 'mgo-mousetrap']);
